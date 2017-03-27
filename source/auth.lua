@@ -1,11 +1,8 @@
 --
 -- 	验证客户端链接
 --
-local skynet = require "skynet"
-local queue  = require "skynet.queue"
-local locker = queue()
+local skynet = require "skynet.manager"
 local PbHelper = require("net.PbHelper")
-
 
 local loginToken = skynet.getenv("loginToken")
 local harbor_name = skynet.getenv("harbor_name")
@@ -63,4 +60,6 @@ skynet.start(function()
 			error(string.format("Unknown command %s", tostring(cmd)))
 		end
 	end)
+
+	skynet.register(".auth")
 end)

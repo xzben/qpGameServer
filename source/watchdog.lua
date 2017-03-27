@@ -1,5 +1,3 @@
-package.path = "../source/?.lua;" .. package.path
-
 local skynet = require "skynet"
 local netpack = require "netpack"
 
@@ -96,7 +94,7 @@ skynet.start(function()
 
 	gate = skynet.newservice("xzben_gate")
 	auth = skynet.newservice("auth")
-	skynet.call(".auth", "lua", "start", {
+	skynet.call(auth, "lua", "start", {
 		g = gate;
 		w = skynet.self();
 	})

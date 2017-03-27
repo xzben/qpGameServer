@@ -1,4 +1,4 @@
-local skynet = require "skynet"
+local skynet = require "skynet.manager"
 
 local pool_size 	= ...
 local agent_pool 	= {}
@@ -39,5 +39,5 @@ skynet.start(function()
 		end
 	end)
 	init_pool()
-	skynet.register ".agent_pool"
+	skynet.register(".agent_poll")
 end)

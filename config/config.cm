@@ -1,6 +1,6 @@
 root = "./skynet/"
 thread = 8
-logger = root.."../log/skynet_cm.log"
+logger = nil --root.."../log/skynet_cm.log"
 logpath = "."
 harbor = 0
 start = "main"	-- main script

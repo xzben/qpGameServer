@@ -1,14 +1,7 @@
 local skynet = require "skynet"
-local netpack = require "netpack"
-local socket = require "socket"
-local sproto = require "sproto"
-local bit32 = require "bit32"
-local PbHelper = require "net.PbHelper"
-local protoRegister = require "net.ProtoRegister"
-local Player = require("player.Player")	
-
-local host
-local send_request
+-- local PbHelper = require "net/PbHelper"
+-- local protoRegister = require "net/ProtoRegister"
+-- local Player = require("player/Player")	
 
 local CMD = {}
 local client_fd
@@ -41,7 +34,6 @@ skynet.start(function()
 		skynet.ret(skynet.pack(f(...)))
 	end)
 	
-	protoRegister.register_all()
-
+	-- protoRegister.register_all()
 	
 end)

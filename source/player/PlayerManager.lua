@@ -1,4 +1,4 @@
-local skynet = require "skynet"
+local skynet = require "skynet.manager"
 
 local login_lock_list = {}
 local player_list_by_account = {}
@@ -88,5 +88,5 @@ skynet.start(function()
 		end
 	end)
 
-	skynet.register ".playermng"
+	skynet.register(".playermng")
 end)
