@@ -1,0 +1,6 @@
+package hall;
+
+message Login{
+    required string account = 1;
+    required string loginToken = 2;
+}
