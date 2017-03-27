@@ -4,22 +4,54 @@
 local skynet = require "skynet"
 local queue  = require "skynet.queue"
 local locker = queue()
+local PbHelper = require("net.PbHelper")
 
-local command 		= {}
 
+local loginToken = skynet.getenv("loginToken")
+local harbor_name = skynet.getenv("harbor_name")
 
-local function auth_ok( fd )
+local command = {}
+local gate = nil
+local watchdog = nil
 
+local function checkData( msg )
+	local decode, typename, typename2 = PbHelper.decode(msg)
+
+	if decode and typename == "hall.Login" then
+		if decode.loginToken == loginToken then
+			return {
+				account = decode.account;
+			}
+		end 
+	end
 end
 
-function command.data(fd, msg)
-	-- 保证消息按顺序执行
-	locker(function()
-	
+function command.auth( data )
+	local fd = data.f
+	local msg = data.m
 
-				
-	end)
+	local data = checkData( msg )
+	if data == nil then
+		skynet.call(gate, "lua", "kick", fd)
+	else
+		local loginData = {
+			acc = data.account;
+			f = fd;
+			g = gate;
+			w = watchdog;
+			harbor = harbor_name;
+		}
 
+		cluster.call("main", ".playermng", "add_by_account", loginData)
+		if harbor_name ~= "main" then
+			cluster.call(harbor_name, ".playermng", "add_by_account", loginData)
+		end
+	end
+end
+
+function command.start( conf )
+	gate = conf.g
+	watchdog = conf.w
 end
 
 skynet.start(function()

@@ -9,10 +9,12 @@ local debug_console_port	= skynet.getenv("debug_console_port")
 skynet.start(function()
 	print("Server start......")
 	
-	skynet.newservice("debug_console", debug_console_port)
+	--skynet.newservice("debug_console", debug_console_port)
 	skynet.newservice("agent_pool", max_client)
 	
 	local watchdog = skynet.newservice("watchdog")
+	local playerManager = skynet.newservice("player.PlayerManager")
+	
 	skynet.call(watchdog, "lua", "start", {
 		port = client_port,
 		maxclient = max_client,

@@ -1,6 +1,6 @@
 root = "./skynet/"
 thread = 8
-logger = nil -- root.."../log/skynet_cm.log"
+logger = root.."../log/skynet_cm.log"
 logpath = "."
 harbor = 0
 start = "main"	-- main script
@@ -24,3 +24,6 @@ harbor_name 		= "main"		--当前节点的名字
 client_port 		= 3000 			--客户端链接的端口
 debug_console_port 	= 4000 			--debug console 服务的端口
 
+
+-----------------------------------------------
+loginToken 			= "adfljasdfjlkajdfiahdsfadfljadfadlf"

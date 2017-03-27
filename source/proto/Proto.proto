@@ -1,7 +1,0 @@
-package Proto;
-
-message Person{
-    required string name = 1;
-    required string passwd = 2;
-    required int32  id = 3;
-}
